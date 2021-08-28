@@ -1,9 +1,9 @@
-import * as types from '../action-types';
+import * as types from '../action-types'
 
 const initialState = {
     items: [],
-    isFetching: true,
-    count: 0
+    isFetching: false,
+    hasError: false
 }
 
 export default function news(state = initialState, action) {
@@ -12,6 +12,26 @@ export default function news(state = initialState, action) {
             return {
                 ...state,
                 count: action.payload
+            }
+        }
+        case types.FETCH_USERS_REQUEST: {
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case types.FETCH_USERS_SUCCESS: {
+            return {
+                ...state,
+                isFetching: false,
+                items: action.payload
+            }
+        }
+        case types.FETCH_USERS_ERROR: {
+            return {
+                ...state,
+                isFetching: false,
+                hasError: true
             }
         }
         default : {
