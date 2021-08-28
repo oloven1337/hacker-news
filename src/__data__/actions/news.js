@@ -1,37 +1,82 @@
 import * as types from '../action-types'
 import axios from '../axios'
 
-export const getNews = () => async (dispatch) => {
+export const getNewsById = (id) => async (dispatch) => {
     try {
         dispatch({
-            type: types.FETCH_USERS_REQUEST
+            type: types.FETCH_CURRENT_NEWS_REQUEST
         })
 
         const { data } = await axios({
             method: 'GET',
-            url: '/newstories.json'
+            url: `/item/${id}.json?print=pretty`
+        })
+        console.log(data)
+        dispatch({
+            type: types.FETCH_CURRENT_NEWS_SUCCESS,
+            payload: data
+        })
+    } catch (e) {
+        dispatch({
+            type: types.FETCH_CURRENT_NEWS_ERROR
+        })
+    }
+}
+
+export const getAll = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: types.FETCH_NEWS_REQUEST
         })
 
-        const promises = data
-            .slice(0, 100)
-            .map(id => (
-                axios({
-                    method: 'GET',
-                    url: `/item/${id}.json?print=pretty`
-                })
-            ))
+        // const { data } = await axios({
+        //     method: 'GET',
+        //     url: '/newstories.json'
+        // })
+        //
+        // const promises = data
+        //     .slice(0, 100)
+        //     .map(id => (
+        //         axios({
+        //             method: 'GET',
+        //             url: `/item/${id}.json?print=pretty`
+        //         })
+        //     ))
+        //
+        // const news = await Promise.all(promises)
+        // const newsData = news.map(({ data }) => data)
 
-        const news = await Promise.all(promises)
-        const newsData = news.map(({ data }) => data)
+        // console.log(newsData)
 
         dispatch({
-            type: types.FETCH_USERS_SUCCESS,
-            payload: newsData
+            type: types.FETCH_NEWS_SUCCESS,
+            payload: [
+                {
+                    'by': 'dnetesn',
+                    'descendants': 0,
+                    'id': 28337482,
+                    'score': 3,
+                    'time': 1630153327,
+                    'title': 'You May Have More Friends Than Your Friends Do',
+                    'type': 'story',
+                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do'
+                },
+                {
+                    'by': 'dasfasfnetesn',
+                    'descendants': 0,
+                    'id': 28337481,
+                    'score': 3,
+                    'time': 1630153310,
+                    'title': 'You May Have asfafMore Friends Than Your Friends Do',
+                    'type': 'story',
+                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do'
+                }
+            ]
         })
 
     } catch (e) {
         dispatch({
-            type: types.FETCH_USERS_ERROR
+            type: types.FETCH_NEWS_ERROR
         })
     }
 }

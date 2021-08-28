@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { StylesProvider } from '@material-ui/core/styles'
-import styled, { createGlobalStyle } from 'styled-components'
 
 import { store } from './__data__/store'
 import { App } from './app'

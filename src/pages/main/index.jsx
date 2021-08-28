@@ -1,11 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core'
+import { formatRelative, subDays } from 'date-fns'
+import { ru } from 'date-fns/locale'
+import { Card, CardActions, CardContent, Typography } from '@material-ui/core'
 
 import { isLoading, newsList } from '../../__data__/selectors/news'
-import { getNews } from '../../__data__/actions/news'
+import { getAll } from '../../__data__/actions/news'
 
 import { NewsItem, ButtonStyled } from './style'
+import { Link } from 'react-router-dom'
 
 const News = () => {
     const dispatch = useDispatch()
@@ -13,7 +16,7 @@ const News = () => {
     const items = useSelector(newsList)
 
     React.useEffect(() => {
-        dispatch(getNews())
+        dispatch(getAll())
     }, [dispatch])
 
     if (isFetching) {
@@ -24,7 +27,7 @@ const News = () => {
 
     return (
         <>
-            {items.map(({ id, title, score, by, time, url } = {}) => {
+            {items.map(({ id, title, score, by, time, url, descendants } = {}) => {
                 return <NewsItem key={id}>
                     <Card>
                         <CardContent>
@@ -40,13 +43,18 @@ const News = () => {
                             <Typography variant="body2" component="p">
                                 {new Date(time * 1000).toDateString()}
                                 <br/>
-                                {new Date(time * 1000).toTimeString()}
+                                {formatRelative(
+                                    subDays(new Date(time * 1000), 3),
+                                    new Date(time * 1000), { locale: ru })}
+                                {/*{format(new Date(time * 1000).toTimeString())}*/}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <ButtonStyled variant="contained" color="primary" href={url}>
-                                Read it
-                            </ButtonStyled>
+                            <Link to={`/${id}`}>
+                                <ButtonStyled variant="contained" color="primary">
+                                    Read it
+                                </ButtonStyled>
+                            </Link>
                         </CardActions>
                     </Card>
                 </NewsItem>
@@ -63,7 +71,5 @@ const News = () => {
 // По клику на новость происходит переход на страницу новости url
 // Список новостей должен автоматически обновляться раз в минуту без участия пользователя
 // На странице должна быть кнопка для принудительного обновления списка новостей
-
-News.propTypes = {}
 
 export default News
