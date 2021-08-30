@@ -31,9 +31,9 @@ const News = () => {
                 return <NewsItem key={id}>
                     <Card>
                         <CardContent>
-                            <ButtonStyled href={url}>
+                            <Typography variant="h6">
                                 {title}
-                            </ButtonStyled>
+                            </Typography>
                             <Typography component="h2">
                                 {score}
                             </Typography>
@@ -50,7 +50,7 @@ const News = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to={`/${id}`}>
+                            <Link to={`/item/${id}`}>
                                 <ButtonStyled variant="contained" color="primary">
                                     Read it
                                 </ButtonStyled>

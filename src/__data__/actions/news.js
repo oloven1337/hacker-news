@@ -11,7 +11,6 @@ export const getNewsById = (id) => async (dispatch) => {
             method: 'GET',
             url: `/item/${id}.json?print=pretty`
         })
-        console.log(data)
         dispatch({
             type: types.FETCH_CURRENT_NEWS_SUCCESS,
             payload: data
