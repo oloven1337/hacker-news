@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Card, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Card, CardContent, Typography } from '@material-ui/core'
 import formatRelative from 'date-fns/formatRelative'
 import subDays from 'date-fns/subDays'
 
-import { ButtonStyled } from './style'
+import { ButtonStyled, CardActionsStyled } from './style'
 import { useNewsItem } from './use-news-item'
 import Index from '../../components/comments'
 
@@ -55,13 +55,13 @@ const NewsItem = () => {
                             text
                         </Typography>
                     </CardContent>
-                    <CardActions>
+                    <CardActionsStyled>
                         <a href={url} target="_blank">
                             <ButtonStyled variant="contained" color="primary">
                                 Read it
                             </ButtonStyled>
                         </a>
-                    </CardActions>
+                    </CardActionsStyled>
                 </Card>
             </div>
             <Index kids={kids}/>

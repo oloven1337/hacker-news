@@ -7,7 +7,7 @@ export const NewsItem = styled.div`
     margin: 10px auto;
     text-align: center;
     transition: .5s;
-    border: 2px solid #3f51b5;
+    border: 2px solid #e91e63;
 
     a {
         margin-left: auto;
@@ -22,8 +22,9 @@ export const NewsItem = styled.div`
 export const ButtonStyled = styled(Button)`
     margin-left: auto;
     font-weight: bold;
+    background-color: #c2185b;
 
     &:hover {
-        text-decoration: underline;
+        background-color: #e91e63;
     }
 `

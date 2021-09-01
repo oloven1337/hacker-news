@@ -4,8 +4,9 @@ import { Button } from '@material-ui/core'
 export const ButtonStyled = styled(Button)`
     margin-left: auto;
     font-weight: bold;
+    background-color: #c2185b;
 
     &:hover {
-        text-decoration: underline;
+        background-color: #e91e63;
     }
 `

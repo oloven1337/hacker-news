@@ -1,30 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import { getCommentsById } from '../../__data__/actions/comments'
 import { useDispatch, useSelector } from 'react-redux'
 import { comments } from '../../__data__/selectors/comments'
+import { CommentWrapper, AuthorCommentStyled, ParagraphStyled, ButtonStyled } from './style'
 
-const AuthorCommentStyled = styled.div`
-  font-size: 20px;
-  color: #ffeb3b;
-`
-
-const ParagraphStyled = styled.div`
-  color: white;
-
-  & a {
-    color: #45c8f1;
-  }
-`
-
-const CommentWrapper = styled.div`
-  padding: 5px 10px;
-  background-color: #3f51b5;
-  margin: 10px;
-`
-
-const Comment = ({ id, by, kids, text }) => {
+const Comment = ({ id = 0, by = '', kids = [], text = '' }) => {
 
     return (
         <div>
@@ -35,6 +16,13 @@ const Comment = ({ id, by, kids, text }) => {
                 <ParagraphStyled>
                     <p dangerouslySetInnerHTML={{ __html: text }}/>
                 </ParagraphStyled>
+                {kids.length !== 0 ? (
+                    <ButtonStyled
+                        variant="contained"
+                        color="primary">
+                        Show more
+                    </ButtonStyled>
+                ) : null}
             </CommentWrapper>
         </div>
     )
