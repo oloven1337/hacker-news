@@ -3,9 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
 import news from './reducers/news'
+import comments from './reducers/comments'
 
 const rootReducer = combineReducers({
-    news
+    news,
+    comments
 })
 
 export const store = createStore(

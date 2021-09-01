@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatRelative, subDays } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import { Link } from 'react-router-dom'
 import { Card, CardActions, CardContent, Typography } from '@material-ui/core'
 
 import { isLoading, newsList } from '../../__data__/selectors/news'
 import { getAll } from '../../__data__/actions/news'
 
 import { NewsItem, ButtonStyled } from './style'
-import { Link } from 'react-router-dom'
 
 const News = () => {
     const dispatch = useDispatch()
@@ -22,8 +22,6 @@ const News = () => {
     if (isFetching) {
         return <h1>Loading...</h1>
     }
-
-    console.log(items)
 
     return (
         <>

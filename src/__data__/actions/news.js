@@ -11,6 +11,7 @@ export const getNewsById = (id) => async (dispatch) => {
             method: 'GET',
             url: `/item/${id}.json?print=pretty`
         })
+        console.log(data)
         dispatch({
             type: types.FETCH_CURRENT_NEWS_SUCCESS,
             payload: data
@@ -53,12 +54,17 @@ export const getAll = () => async (dispatch) => {
                 {
                     'by': 'dnetesn',
                     'descendants': 0,
-                    'id': 28337482,
+                    'id': 28364866,
                     'score': 3,
                     'time': 1630153327,
                     'title': 'You May Have More Friends Than Your Friends Do',
                     'type': 'story',
-                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do'
+                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do',
+                    kids: [
+                        2922097,
+                        2922429,
+                        2924562
+                    ]
                 },
                 {
                     'by': 'dasfasfnetesn',

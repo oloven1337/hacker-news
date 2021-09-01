@@ -50,7 +50,7 @@ export default function news(state = initialState, action) {
                 hasError: true
             }
         }
-        default : {
+        default: {
             return state
         }
     }

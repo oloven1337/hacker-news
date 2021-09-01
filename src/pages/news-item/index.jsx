@@ -1,17 +1,16 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Card, CardActions, CardContent, Typography } from '@material-ui/core'
 import formatRelative from 'date-fns/formatRelative'
 import subDays from 'date-fns/subDays'
-import ru from 'date-fns/locale/ru'
 
 import { ButtonStyled } from './style'
 import { useNewsItem } from './use-news-item'
+import Index from '../../components/comments'
 
 const NewsItem = () => {
     const history = useHistory()
-    const { isFetching, by, kids, parent, time, text, url } = useNewsItem()
-
+    const { isFetching, by, time, text, url, title, kids } = useNewsItem()
     const goBackHandler = React.useCallback(
         () => history.push('/'),
         [history]
@@ -34,10 +33,10 @@ const NewsItem = () => {
                 <Card>
                     <CardContent>
                         <Typography variant="h6">
-                            {text}
+                            {title}
                         </Typography>
                         <Typography component="h2">
-                            {kids}
+                            {text}
                         </Typography>
                         <Typography color="textSecondary">
                             {by}
@@ -52,6 +51,9 @@ const NewsItem = () => {
                             {/*{new Date(time * 1000).toTimeString()}*/}
                             {formatRelative(subDays(new Date(time * 1000), 3), new Date())}
                         </Typography>
+                        <Typography component="h2">
+                            text
+                        </Typography>
                     </CardContent>
                     <CardActions>
                         <a href={url} target="_blank">
@@ -62,9 +64,8 @@ const NewsItem = () => {
                     </CardActions>
                 </Card>
             </div>
-
+            <Index kids={kids}/>
         </>
-
     )
 }
 

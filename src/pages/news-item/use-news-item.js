@@ -9,7 +9,7 @@ export function useNewsItem() {
     const dispatch = useDispatch()
     const { id = '' } = useParams()
     const isFetching = useSelector(isLoading)
-    const { by = '', kids = [], parent, time = 0, text = '', url = '' } = useSelector(currentNews)
+    const { by = '', time = 0, text = '', url = '', title = '', kids = [] } = useSelector(currentNews)
 
     React.useEffect(() => {
         dispatch(getNewsById(id))
@@ -17,11 +17,11 @@ export function useNewsItem() {
 
     return {
         isFetching,
+        title,
         by,
-        kids,
-        parent,
         time,
         text,
-        url
+        url,
+        kids
     }
 }
