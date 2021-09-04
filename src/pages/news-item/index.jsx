@@ -12,7 +12,9 @@ const NewsItem = () => {
     const history = useHistory()
     const { isFetching, by, time, text, url, title, kids } = useNewsItem()
     const goBackHandler = React.useCallback(
-        () => history.push('/'),
+        () => {
+            history.push('/')
+        },
         [history]
     )
 

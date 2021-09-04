@@ -47,22 +47,17 @@ export default function comments(state = initialState, action) {
         case types.FETCH_CHILD_COMMENTS_REQUEST: {
             return {
                 ...state
-                // isFetching: true
             }
         }
         case types.FETCH_CHILD_COMMENTS_SUCCESS: {
-            const prevComments = putChildComments(state.comments, action.payload)
-            console.log(prevComments === state.comments)
             return {
                 ...state,
                 comments: putChildComments(state.comments, action.payload)
-                // isFetching: false
             }
         }
         case types.FETCH_CHILD_COMMENTS_ERROR: {
             return {
                 ...state,
-                // isFetching: false,
                 hasError: true
             }
         }

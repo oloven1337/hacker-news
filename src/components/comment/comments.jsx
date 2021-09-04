@@ -13,10 +13,6 @@ export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childCommen
         setClickPermission(true)
     }
 
-    // if (childComments) {
-    //     return childComments.map((comment) => <CommentItem key={comment.id} {...comment}/>)
-    // }
-
     return (
         <div>
             <CommentWrapper>
@@ -27,20 +23,13 @@ export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childCommen
                     <p dangerouslySetInnerHTML={{ __html: text }}/>
                 </ParagraphStyled>
                 {kids.length !== 0 && !clickPermission
-                    ? (<ButtonStyled
-                        variant="contained"
-                        color="primary"
-                        onClick={handleClickComments}
-                    >
-                        Show more
-                    </ButtonStyled>)
-                    : null}
-                {/*{kids.length !== 0 && clickPermission && commentsByIdSelector*/}
-                {/*    ? commentsByIdSelector.map((element, i) => (*/}
-                {/*        <Comment key={i} {...element}/>*/}
-                {/*    ))*/}
-                {/*    : null*/}
-                {/*}*/}
+                && (<ButtonStyled
+                    variant="contained"
+                    color="primary"
+                    onClick={handleClickComments}
+                >
+                    Show more
+                </ButtonStyled>)}
                 {childComments && childComments.map((comment) => (
                     <CommentItem key={comment.id} {...comment}/>
                 ))}
@@ -48,13 +37,3 @@ export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childCommen
         </div>
     )
 }
-
-// export const Comment = ({ comments }) => {
-//     return (
-//         <div>
-//             {comments.map((comment) => {
-//                 return <CommentItem key={comment.id} {...comment}/>
-//             })}
-//         </div>
-//     )
-// }

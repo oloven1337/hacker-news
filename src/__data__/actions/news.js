@@ -67,7 +67,7 @@ export const getAll = () => async (dispatch) => {
                     descendants: 3,
                     id: 28394402,
                     kids: [28395128, 28394667, 28394426],
-                    score: 7,
+                    score: 104,
                     time: 1630601573,
                     title: 'Fake SSDs being sold by Amazon – Make sure you check for CHIPS',
                     type: 'story'

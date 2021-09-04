@@ -1,20 +1,27 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatRelative, subDays } from 'date-fns'
-import { ru } from 'date-fns/locale'
 import { Link } from 'react-router-dom'
-import { Card, CardActions, CardContent, Typography } from '@material-ui/core'
+import { CardActions } from '@material-ui/core'
 
 import { isLoading, newsList } from '../../__data__/selectors/news'
 import { getAll } from '../../__data__/actions/news'
 
-import { NewsItem, ButtonStyled } from './style'
+import {
+    NewsItem,
+    ButtonStyled,
+    WrapperCard,
+    TextStyled,
+    CardStyled,
+    TitleStyled,
+    ButtonStyledUpdate,
+    Wrapper
+} from './style'
 
 const News = () => {
     const dispatch = useDispatch()
     const isFetching = useSelector(isLoading)
     const items = useSelector(newsList)
-    const intervalRef = useRef()
 
     React.useEffect(() => {
         // const intervalId = setInterval(() => {
@@ -36,41 +43,40 @@ const News = () => {
     }
 
     return (
-        <>
-            <button onClick={handleClickUpdate}>click</button>
+        <Wrapper>
             {items.map(({ id, title, score, by, time, url, descendants } = {}) => {
                 return <NewsItem key={id}>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h6">
-                                {title}
-                            </Typography>
-                            <Typography component="h2">
-                                {score}
-                            </Typography>
-                            <Typography color="textSecondary">
-                                {by}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                                {new Date(time * 1000).toDateString()}
-                                <br/>
+                    <CardStyled>
+                        <TitleStyled>
+                            {title}
+                        </TitleStyled>
+                        <WrapperCard>
+                            <TextStyled variant="h6">
+                                <strong>Rating:</strong> {score}
+                            </TextStyled>
+                            <TextStyled>
+                                <strong>By:</strong> {by}
+                            </TextStyled>
+                            <TextStyled variant="body2">
+                                <strong>Date:</strong>
                                 {formatRelative(
                                     subDays(new Date(time * 1000), 3),
-                                    new Date(time * 1000), { locale: ru })}
-                                {/*{format(new Date(time * 1000).toTimeString())}*/}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Link to={`/item/${id}`}>
-                                <ButtonStyled variant="contained" color="primary">
-                                    Read it
-                                </ButtonStyled>
-                            </Link>
-                        </CardActions>
-                    </Card>
+                                    new Date(time * 1000))}
+                            </TextStyled>
+                            <CardActions>
+                                <Link to={`/item/${id}`}>
+                                    <ButtonStyled variant="contained" color="primary">
+                                        Read it
+                                    </ButtonStyled>
+                                </Link>
+                            </CardActions>
+                        </WrapperCard>
+
+                    </CardStyled>
                 </NewsItem>
             })}
-        </>
+            <ButtonStyledUpdate variant="contained" color="primary" onClick={handleClickUpdate}>Update</ButtonStyledUpdate>
+        </Wrapper>
     )
 }
 
