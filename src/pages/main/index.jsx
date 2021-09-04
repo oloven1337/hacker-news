@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatRelative, subDays } from 'date-fns'
 import { ru } from 'date-fns/locale'
@@ -14,10 +14,22 @@ const News = () => {
     const dispatch = useDispatch()
     const isFetching = useSelector(isLoading)
     const items = useSelector(newsList)
+    const intervalRef = useRef()
 
     React.useEffect(() => {
+        // const intervalId = setInterval(() => {
+        //     dispatch(getAll())
+        // }, 10000)
+        //
         dispatch(getAll())
+        //
+        // intervalRef.current = intervalId
+        // return () => clearInterval(intervalRef.current)
     }, [dispatch])
+
+    const handleClickUpdate = () => {
+        dispatch(getAll())
+    }
 
     if (isFetching) {
         return <h1>Loading...</h1>
@@ -25,6 +37,7 @@ const News = () => {
 
     return (
         <>
+            <button onClick={handleClickUpdate}>click</button>
             {items.map(({ id, title, score, by, time, url, descendants } = {}) => {
                 return <NewsItem key={id}>
                     <Card>

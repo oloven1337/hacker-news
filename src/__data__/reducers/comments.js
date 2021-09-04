@@ -2,54 +2,67 @@ import * as types from '../action-types'
 
 const initialState = {
     comments: [],
-    commentsById: [],
     isFetching: false,
     hasError: false
 }
 
+function putChildComments(comments, childComments) {
+    const newComments = Object.assign([], comments)
+
+    for (const comment of comments) {
+        if (comment.childComments) {
+            putChildComments(comment.childComments, childComments)
+        }
+
+        if (childComments.some(item => item.parent === comment.id)) {
+            comment.childComments = childComments
+        }
+    }
+
+    return newComments
+}
+
 export default function comments(state = initialState, action) {
     switch (action.type) {
-        case types.FETCH_CURRENT_COMMENTS_REQUEST: {
+        case types.FETCH_COMMENTS_REQUEST: {
             return {
                 ...state,
-                isFetching: true,
-                comments: []
+                isFetching: true
             }
         }
-        case types.FETCH_CURRENT_COMMENTS_SUCCESS: {
+        case types.FETCH_COMMENTS_SUCCESS: {
             return {
                 ...state,
-                comments: [...state.comments, ...action.payload],
+                comments: action.payload,
                 isFetching: false
             }
         }
-        case types.FETCH_CURRENT_COMMENTS_ERROR: {
+        case types.FETCH_COMMENTS_ERROR: {
             return {
                 ...state,
                 isFetching: false,
                 hasError: true
             }
         }
-
-        case types.FETCH_COMMENTS_BY_ID_REQUEST: {
+        case types.FETCH_CHILD_COMMENTS_REQUEST: {
             return {
-                ...state,
-                isFetching: true
+                ...state
+                // isFetching: true
             }
         }
-        case types.FETCH_COMMENTS_BY_ID_SUCCESS: {
+        case types.FETCH_CHILD_COMMENTS_SUCCESS: {
+            const prevComments = putChildComments(state.comments, action.payload)
+            console.log(prevComments === state.comments)
             return {
                 ...state,
-                isFetching: false,
-                commentsById: [...state.commentsById, ...action.payload]
-                // commentsById: { id: action.payload.id, values: [...state.commentsById, ...action.payload] }
-                // commentsById: action.payload
+                comments: putChildComments(state.comments, action.payload)
+                // isFetching: false
             }
         }
-        case types.FETCH_COMMENTS_BY_ID_ERROR: {
+        case types.FETCH_CHILD_COMMENTS_ERROR: {
             return {
                 ...state,
-                isFetching: false,
+                // isFetching: false,
                 hasError: true
             }
         }

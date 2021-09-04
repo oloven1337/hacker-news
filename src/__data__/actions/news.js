@@ -24,6 +24,7 @@ export const getNewsById = (id) => async (dispatch) => {
 }
 
 export const getAll = () => async (dispatch) => {
+    console.log('запрос')
     try {
         dispatch({
             type: types.FETCH_NEWS_REQUEST
@@ -52,29 +53,24 @@ export const getAll = () => async (dispatch) => {
             type: types.FETCH_NEWS_SUCCESS,
             payload: [
                 {
-                    'by': 'dnetesn',
-                    'descendants': 0,
-                    'id': 28364866,
-                    'score': 3,
-                    'time': 1630153327,
-                    'title': 'You May Have More Friends Than Your Friends Do',
-                    'type': 'story',
-                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do',
-                    kids: [
-                        2922097,
-                        2922429,
-                        2924562
-                    ]
+                    by: 'samstave',
+                    descendants: 3,
+                    id: 2839902,
+                    kids: [28395128, 28394667, 28394426],
+                    score: 7,
+                    time: 1630601573,
+                    title: 'Fake SSDs being sold by Amazon – Make sure you check for CHIPS',
+                    type: 'story'
                 },
                 {
-                    'by': 'dasfasfnetesn',
-                    'descendants': 0,
-                    'id': 28337481,
-                    'score': 3,
-                    'time': 1630153310,
-                    'title': 'You May Have asfafMore Friends Than Your Friends Do',
-                    'type': 'story',
-                    'url': 'https://nautil.us/blog/why-you-may-have-more-friends-than-your-friends-do'
+                    by: 'samstave',
+                    descendants: 3,
+                    id: 28394402,
+                    kids: [28395128, 28394667, 28394426],
+                    score: 7,
+                    time: 1630601573,
+                    title: 'Fake SSDs being sold by Amazon – Make sure you check for CHIPS',
+                    type: 'story'
                 }
             ]
         })

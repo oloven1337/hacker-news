@@ -6,7 +6,7 @@ import subDays from 'date-fns/subDays'
 
 import { ButtonStyled, CardActionsStyled } from './style'
 import { useNewsItem } from './use-news-item'
-import Index from '../../components/comments'
+import { Comments } from './comments'
 
 const NewsItem = () => {
     const history = useHistory()
@@ -64,7 +64,7 @@ const NewsItem = () => {
                     </CardActionsStyled>
                 </Card>
             </div>
-            <Index kids={kids}/>
+            <Comments kids={kids}/>
         </>
     )
 }

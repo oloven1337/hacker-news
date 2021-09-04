@@ -12,7 +12,8 @@ export default function news(state = initialState, action) {
         case types.FETCH_NEWS_REQUEST: {
             return {
                 ...state,
-                isFetching: true
+                isFetching: true,
+                items: []
             }
         }
         case types.FETCH_NEWS_SUCCESS: {

@@ -1,2 +1,2 @@
-export const comments = state => state.comments.comments
-export const commentsById = state => state.comments.commentsById
+export const commentsSelector = state => state.comments.comments
+// export const commentsById = state => state.comment.commentsById
