@@ -2,7 +2,8 @@ import React from 'react'
 
 import { getChildComments } from '../../__data__/actions/comments'
 import { useDispatch } from 'react-redux'
-import { CommentWrapper, AuthorCommentStyled, ParagraphStyled, ButtonStyled } from './style'
+import { CommentWrapper, AuthorCommentStyled, ParagraphStyled } from './style'
+import { ButtonStyled } from '../Button'
 
 export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childComments }) => {
     const dispatch = useDispatch()

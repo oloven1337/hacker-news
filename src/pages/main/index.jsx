@@ -9,7 +9,6 @@ import { getAll } from '../../__data__/actions/news'
 
 import {
     NewsItem,
-    ButtonStyled,
     WrapperCard,
     TextStyled,
     CardStyled,
@@ -17,25 +16,28 @@ import {
     ButtonStyledUpdate,
     Wrapper
 } from './style'
+import { ButtonStyled } from '../../components/Button'
 
 const News = () => {
     const dispatch = useDispatch()
     const isFetching = useSelector(isLoading)
     const items = useSelector(newsList)
+    const [reset, setReset] = React.useState(Math.random())
 
     React.useEffect(() => {
-        // const intervalId = setInterval(() => {
-        //     dispatch(getAll())
-        // }, 10000)
-        //
+        const intervalId = setInterval(() => {
+            dispatch(getAll())
+        }, 10000)
+
         dispatch(getAll())
-        //
-        // intervalRef.current = intervalId
-        // return () => clearInterval(intervalRef.current)
-    }, [dispatch])
+        return () => {
+            console.log('clear')
+            clearInterval(intervalId)
+        }
+    }, [dispatch, reset])
 
     const handleClickUpdate = () => {
-        dispatch(getAll())
+        setReset(Math.random())
     }
 
     if (isFetching) {
@@ -75,7 +77,8 @@ const News = () => {
                     </CardStyled>
                 </NewsItem>
             })}
-            <ButtonStyledUpdate variant="contained" color="primary" onClick={handleClickUpdate}>Update</ButtonStyledUpdate>
+            <ButtonStyledUpdate variant="contained" color="primary"
+                                onClick={handleClickUpdate}>Update</ButtonStyledUpdate>
         </Wrapper>
     )
 }
