@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { CardActions, Typography } from '@material-ui/core'
-import { ButtonStyled } from '../../components/Button'
+import { CardActions } from '@material-ui/core'
+import { ButtonStyled } from '../../components/button'
 
 export const CardActionsStyled = styled(CardActions)`
     a {
@@ -39,8 +39,33 @@ export const GoOver = styled(ButtonStyled)`
         transition: .9s;
     }
 `
-export const TextStyled = styled(Typography)`
-    font-size: 20px;
+
+export const TextStyled = styled.div`
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+`
+
+export const CommentStyled = styled(TextStyled)`
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+`
+
+export const TitleStyled = styled.div`
+    font-size: 24px;
+    border-bottom: 3px solid #c2185b;
+    text-align: center;
 
     @media (max-width: 768px) {
         font-size: 16px;

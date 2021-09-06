@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { ButtonStyled } from './style'
+import { ButtonStyled } from '../../components/button'
 
 const NotFound = () => {
 

@@ -10,8 +10,6 @@ export function useNewsItem() {
     const { id = '' } = useParams()
     const isFetching = useSelector(isLoading)
     const { by = '', time = 0, text = '', url = '', title = '', kids = [] } = useSelector(currentNews)
-    const obj= useSelector(currentNews)
-    console.log(obj)
 
     React.useEffect(() => {
         dispatch(getNewsById(id))

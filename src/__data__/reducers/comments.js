@@ -27,6 +27,7 @@ export default function comments(state = initialState, action) {
         case types.FETCH_COMMENTS_REQUEST: {
             return {
                 ...state,
+                comments: [],
                 isFetching: true
             }
         }

@@ -16,7 +16,6 @@ export const getChildComments = (kids) => async (dispatch) => {
             ))
         const comments = await Promise.all(promises)
         const childComments = comments.map(({ data }) => data)
-        console.log(childComments)
         dispatch({
             type: types.FETCH_CHILD_COMMENTS_SUCCESS,
             payload: childComments

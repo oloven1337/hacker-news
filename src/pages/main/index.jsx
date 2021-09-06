@@ -8,15 +8,15 @@ import { isLoading, newsList } from '../../__data__/selectors/news'
 import { getAll } from '../../__data__/actions/news'
 
 import {
-    NewsItem,
     WrapperCard,
     TextStyled,
-    CardStyled,
     TitleStyled,
-    ButtonStyledUpdate,
     Wrapper
 } from './style'
-import { ButtonStyled } from '../../components/Button'
+import { ButtonStyled } from '../../components/button'
+import { CardStyled } from '../../components/card'
+import { ButtonStyledUpdate } from '../../components/updateButton'
+import { Loader } from '../../components/loader'
 
 const News = () => {
     const dispatch = useDispatch()
@@ -25,13 +25,10 @@ const News = () => {
     const [reset, setReset] = React.useState(Math.random())
 
     React.useEffect(() => {
-        const intervalId = setInterval(() => {
-            dispatch(getAll())
-        }, 10000)
+        const intervalId = setInterval(() => dispatch(getAll()), 10000)
 
         dispatch(getAll())
         return () => {
-            console.log('clear')
             clearInterval(intervalId)
         }
     }, [dispatch, reset])
@@ -41,41 +38,38 @@ const News = () => {
     }
 
     if (isFetching) {
-        return <h1>Loading...</h1>
+        return <Loader/>
     }
 
     return (
         <Wrapper>
             {items.map(({ id, title, score, by, time, url, descendants } = {}) => {
-                return <NewsItem key={id}>
-                    <CardStyled>
-                        <TitleStyled>
-                            {title}
-                        </TitleStyled>
-                        <WrapperCard>
-                            <TextStyled variant="h6">
-                                <strong>Rating:</strong> {score}
-                            </TextStyled>
-                            <TextStyled>
-                                <strong>By:</strong> {by}
-                            </TextStyled>
-                            <TextStyled variant="body2">
-                                <strong>Date:</strong>
-                                {formatRelative(
-                                    subDays(new Date(time * 1000), 3),
-                                    new Date(time * 1000))}
-                            </TextStyled>
-                            <CardActions>
-                                <Link to={`/item/${id}`}>
-                                    <ButtonStyled variant="contained" color="primary">
-                                        Read it
-                                    </ButtonStyled>
-                                </Link>
-                            </CardActions>
-                        </WrapperCard>
-
-                    </CardStyled>
-                </NewsItem>
+                return <CardStyled key={id}>
+                    <TitleStyled>
+                        {title}
+                    </TitleStyled>
+                    <WrapperCard>
+                        <TextStyled>
+                            <strong>Rating:</strong> {score}
+                        </TextStyled>
+                        <TextStyled>
+                            <strong>By:</strong> {by}
+                        </TextStyled>
+                        <TextStyled>
+                            <strong>Date:</strong>
+                            {formatRelative(
+                                subDays(new Date(time * 1000), 3),
+                                new Date(time * 1000))}
+                        </TextStyled>
+                        <CardActions>
+                            <Link to={`/item/${id}`}>
+                                <ButtonStyled variant="contained" color="primary">
+                                    Read it
+                                </ButtonStyled>
+                            </Link>
+                        </CardActions>
+                    </WrapperCard>
+                </CardStyled>
             })}
             <ButtonStyledUpdate variant="contained" color="primary"
                                 onClick={handleClickUpdate}>Update</ButtonStyledUpdate>

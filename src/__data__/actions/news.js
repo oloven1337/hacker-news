@@ -24,7 +24,6 @@ export const getNewsById = (id) => async (dispatch) => {
 }
 
 export const getAll = () => async (dispatch) => {
-    console.log('запрос')
     try {
         dispatch({
             type: types.FETCH_NEWS_REQUEST
@@ -47,7 +46,6 @@ export const getAll = () => async (dispatch) => {
         // const news = await Promise.all(promises)
         // const newsData = news.map(({ data }) => data)
 
-        // console.log(newsData)
 
         dispatch({
             type: types.FETCH_NEWS_SUCCESS,

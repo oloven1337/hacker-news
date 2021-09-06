@@ -3,9 +3,9 @@ import React from 'react'
 import { getChildComments } from '../../__data__/actions/comments'
 import { useDispatch } from 'react-redux'
 import { CommentWrapper, AuthorCommentStyled, ParagraphStyled } from './style'
-import { ButtonStyled } from '../Button'
+import { ButtonStyled } from '../button'
 
-export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childComments }) => {
+export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childComments, deleted = false }) => {
     const dispatch = useDispatch()
     const [clickPermission, setClickPermission] = React.useState(false)
 
@@ -13,7 +13,6 @@ export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childCommen
         dispatch(getChildComments(kids))
         setClickPermission(true)
     }
-
     return (
         <div>
             <CommentWrapper>
@@ -21,7 +20,7 @@ export const CommentItem = ({ id = 0, by = '', kids = [], text = '', childCommen
                     <h4>{by}</h4>
                 </AuthorCommentStyled>
                 <ParagraphStyled>
-                    <p dangerouslySetInnerHTML={{ __html: text }}/>
+                    {deleted ? <p>Sorry, comment was deleted</p> : <p dangerouslySetInnerHTML={{ __html: text }}/>}
                 </ParagraphStyled>
                 {kids.length !== 0 && !clickPermission
                 && (<ButtonStyled
