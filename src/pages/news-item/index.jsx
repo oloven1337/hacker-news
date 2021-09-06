@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CardContent, Typography } from '@material-ui/core'
 import formatRelative from 'date-fns/formatRelative'
@@ -11,7 +12,6 @@ import { Comments } from './comments'
 import { TextStyled } from './style'
 import { ButtonStyledUpdate } from '../../components/updateButton'
 import { Loader } from '../../components/loader'
-import { useSelector } from 'react-redux'
 import { commentsSelector, isFetchingCommentSelector } from '../../__data__/selectors/comments'
 
 const NewsItem = () => {

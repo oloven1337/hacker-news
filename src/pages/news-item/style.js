@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { CardActions } from '@material-ui/core'
+
 import { ButtonStyled } from '../../components/button'
 
 export const CardActionsStyled = styled(CardActions)`

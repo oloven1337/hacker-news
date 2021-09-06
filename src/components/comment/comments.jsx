@@ -1,7 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import { getChildComments } from '../../__data__/actions/comments'
-import { useDispatch } from 'react-redux'
 import { CommentWrapper, AuthorCommentStyled, ParagraphStyled } from './style'
 import { ButtonStyled } from '../button'
 

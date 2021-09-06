@@ -1,6 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+
 import { ButtonStyled } from '../../components/button'
+import { NotFoundStyled } from './style'
+
 
 const NotFound = () => {
 
@@ -15,7 +18,7 @@ const NotFound = () => {
                 onClick={goBackHandler}>
                 Go back
             </ButtonStyled>
-            <h1>404 NOT FOUND</h1>
+            <NotFoundStyled><span>404</span>Page not found :(</NotFoundStyled>
         </div>
     )
 }

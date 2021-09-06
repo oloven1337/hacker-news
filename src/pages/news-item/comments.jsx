@@ -6,7 +6,7 @@ import { fetchComments } from '../../__data__/actions/comments'
 import { CommentItem } from '../../components/comment/comments'
 import { Loader } from '../../components/loader'
 
-export const Comments = ({ kids = [], state, commentsCount = 0 }) => {
+export const Comments = ({ kids = [], state }) => {
     const dispatch = useDispatch()
     const comments = useSelector(commentsSelector)
     const isFetchingComment = useSelector(isFetchingCommentSelector)
