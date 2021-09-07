@@ -1,14 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { commentsSelector, isFetchingCommentSelector } from '../../../__data__/selectors/comments'
+import { commentsSelector, hasErrorSelector, isFetchingCommentSelector } from '../../../__data__/selectors/comments'
 import { fetchComments } from '../../../__data__/actions/comments'
-import { CommentItem } from '../comments'
+import { CommentItem } from '../comment-item'
 import { Loader } from '../../../components/loader'
+import { Emoji } from '../../../components/Emoji'
+import emoji from '../../../assets/sad-emoji.png'
 
-export const Comments = ({ kids = [], state }) => {
+export const Index = ({ kids = [], state }) => {
     const dispatch = useDispatch()
     const comments = useSelector(commentsSelector)
+    const hasError = useSelector(hasErrorSelector)
     const isFetchingComment = useSelector(isFetchingCommentSelector)
 
     React.useEffect(() => {
@@ -21,6 +24,15 @@ export const Comments = ({ kids = [], state }) => {
             clearInterval(intervalId)
         }
     }, [dispatch, kids, state])
+
+    if (hasError) {
+        return (
+            <>
+                <h2>Sorry, couldn't load comments</h2>
+                <Emoji src={emoji}/>
+            </>)
+    }
+
     if (isFetchingComment) {
         return <Loader/>
     }

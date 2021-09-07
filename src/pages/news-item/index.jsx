@@ -8,13 +8,17 @@ import subDays from 'date-fns/subDays'
 import { CardActionsStyled, CommentStyled, GoBack, GoOver, TitleStyled } from './style'
 import { Card } from '../../components/card'
 import { useNewsItem } from './use-news-item'
-import { Comments } from './comment/comments'
+import { Index } from './comment'
 import { TextStyled } from './style'
 import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
 import { commentsSelector, isFetchingCommentSelector } from '../../__data__/selectors/comments'
 import { clearComments } from '../../__data__/actions/comments'
 import { clearCurrentNews } from '../../__data__/actions/news'
+import { hasErrorSelector } from '../../__data__/selectors/news'
+import { HomeButton } from '../../components/home-button'
+import emoji from '../../assets/sad-emoji.png'
+import { Emoji } from '../../components/Emoji'
 
 const NewsItem = () => {
     const history = useHistory()
@@ -22,8 +26,8 @@ const NewsItem = () => {
     const { isFetching, by, time, url, title, kids } = useNewsItem()
     const [state, setState] = React.useState(Math.random())
     const commentsCount = useSelector(commentsSelector)
+    const hasError = useSelector(hasErrorSelector)
     const isFetchingComment = useSelector(isFetchingCommentSelector)
-
     const goBackHandler = React.useCallback(
         () => {
             dispatch(clearComments())
@@ -35,6 +39,16 @@ const NewsItem = () => {
 
     const handleClickUpdate = () => {
         setState(Math.random())
+    }
+
+    if (hasError) {
+        return (
+            <>
+                <HomeButton text="Go home"/>
+                <h2>Something went wrong.</h2>
+                <Emoji src={emoji}/>
+            </>
+        )
     }
 
     if (isFetching) {
@@ -84,7 +98,7 @@ const NewsItem = () => {
                     Comments: <span>{commentsCount.length}</span>
                 </CommentStyled>}
             {kids.length !== 0
-                ? <Comments kids={kids} commentsCount={commentsCount.length} state={state}/>
+                ? <Index kids={kids} commentsCount={commentsCount.length} state={state}/>
                 : <h3>no comments</h3>}
             <ButtonUpdate handleClick={handleClickUpdate} text="Update"/>
         </>

@@ -9,7 +9,7 @@ import { App } from './app'
 ReactDOM.render(
     <Provider store={store}>
         <StylesProvider injectFirst>
-                <App/>
+            <App/>
         </StylesProvider>
     </Provider>,
     document.getElementById('root')

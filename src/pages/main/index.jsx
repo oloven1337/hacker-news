@@ -22,7 +22,6 @@ const News = () => {
     const isFetching = useSelector(isLoading)
     const items = useSelector(newsList)
     const [reset, setReset] = React.useState(Math.random())
-
     React.useEffect(() => {
         const intervalId = setInterval(() => dispatch(getAll()), 60000)
 
