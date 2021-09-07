@@ -1,6 +1,8 @@
 import * as types from '../action-types'
 import axios from '../axios'
 
+export const clearCurrentNews = () => ({ type: types.CLEAR_CURRENT_NEWS })
+
 export const getNewsById = (id) => async (dispatch) => {
     try {
         dispatch({
@@ -51,24 +53,25 @@ export const getAll = () => async (dispatch) => {
             type: types.FETCH_NEWS_SUCCESS,
             payload: [
                 {
-                    by: 'samstave',
-                    descendants: 3,
-                    id: 2839902,
-                    kids: [28395128, 28394667, 28394426],
-                    score: 7,
-                    time: 1630601573,
-                    title: 'Fake SSDs being sold by Amazon – Make sure you check for CHIPS',
+                    by: 'SerCe',
+                    descendants: 0,
+                    id: 28441890,
+                    score: 1,
+                    time: 1630998842,
+                    title: 'Testing the Performance of ClickHouse',
                     type: 'story'
+
                 },
                 {
-                    by: 'samstave',
-                    descendants: 3,
-                    id: 28394402,
-                    kids: [28395128, 28394667, 28394426],
-                    score: 104,
-                    time: 1630601573,
-                    title: 'Fake SSDs being sold by Amazon – Make sure you check for CHIPS',
-                    type: 'story'
+                    by: 'giuliomagnifico',
+                    descendants: 7,
+                    id: 28441712,
+                    kids: [28442014, 28442001, 28441935, 28442434, 28442031],
+                    score: 13,
+                    time: 1630997233,
+                    title: 'Tesla’s Fatal Error: Defensive Driving',
+                    type: 'story',
+                    url: 'https://www.eetimes.com/teslas-fatal-error-defensive-driving/'
                 }
             ]
         })

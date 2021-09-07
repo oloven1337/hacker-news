@@ -51,6 +51,13 @@ export default function news(state = initialState, action) {
                 hasError: true
             }
         }
+        case types.CLEAR_CURRENT_NEWS: {
+            return {
+                ...state,
+                currentNews: {}
+            }
+        }
+
         default: {
             return state
         }

@@ -62,6 +62,12 @@ export default function comments(state = initialState, action) {
                 hasError: true
             }
         }
+        case types.CLEAR_COMMENTS: {
+            return {
+                ...state,
+                comments: []
+            }
+        }
 
         default: {
             return state

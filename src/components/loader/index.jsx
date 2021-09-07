@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { LoaderContainer, LoaderStyled } from './style'
-import svg from './img/loader.svg'
+import svg from '../../assets/loader.svg'
 
 export const Loader = () => {
     return (

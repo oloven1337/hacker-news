@@ -1,6 +1,8 @@
 import * as types from '../action-types'
 import axios from '../axios'
 
+export const clearComments = () => ({ type: types.CLEAR_COMMENTS })
+
 export const getChildComments = (kids) => async (dispatch) => {
     try {
         dispatch({

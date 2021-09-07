@@ -26,7 +26,7 @@ export const CommentItem = ({ by = '', kids = [], text = '', childComments, dele
                 {kids.length !== 0 && !clickPermission
                 && (<Button
                     text="Show more"
-                    onClick={handleClickComments}
+                    handleClick={handleClickComments}
                 />)}
                 {childComments && childComments.map((comment) => (
                     <CommentItem key={comment.id} {...comment}/>

@@ -13,7 +13,7 @@ import {
     Wrapper
 } from './style'
 import { Button } from '../../components/button'
-import { CardStyled } from '../../components/card'
+import { Card } from '../../components/card'
 import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
 
@@ -24,7 +24,7 @@ const News = () => {
     const [reset, setReset] = React.useState(Math.random())
 
     React.useEffect(() => {
-        const intervalId = setInterval(() => dispatch(getAll()), 10000)
+        const intervalId = setInterval(() => dispatch(getAll()), 60000)
 
         dispatch(getAll())
         return () => {
@@ -43,7 +43,7 @@ const News = () => {
     return (
         <Wrapper>
             {items.map(({ id, title, score, by, time } = {}) => {
-                return <CardStyled key={id}>
+                return <Card key={id}>
                     <TitleStyled>
                         {title}
                     </TitleStyled>
@@ -68,7 +68,7 @@ const News = () => {
                             </Link>
                         </CardActions>
                     </WrapperCard>
-                </CardStyled>
+                </Card>
             })}
             <ButtonUpdate text="Update" handleClick={handleClickUpdate}/>
         </Wrapper>

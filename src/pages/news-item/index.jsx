@@ -1,21 +1,24 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { CardContent, Typography } from '@material-ui/core'
 import formatRelative from 'date-fns/formatRelative'
 import subDays from 'date-fns/subDays'
 
 import { CardActionsStyled, CommentStyled, GoBack, GoOver, TitleStyled } from './style'
-import { CardStyled } from '../../components/card'
+import { Card } from '../../components/card'
 import { useNewsItem } from './use-news-item'
 import { Comments } from './comment/comments'
 import { TextStyled } from './style'
 import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
 import { commentsSelector, isFetchingCommentSelector } from '../../__data__/selectors/comments'
+import { clearComments } from '../../__data__/actions/comments'
+import { clearCurrentNews } from '../../__data__/actions/news'
 
 const NewsItem = () => {
     const history = useHistory()
+    const dispatch = useDispatch()
     const { isFetching, by, time, url, title, kids } = useNewsItem()
     const [state, setState] = React.useState(Math.random())
     const commentsCount = useSelector(commentsSelector)
@@ -23,9 +26,11 @@ const NewsItem = () => {
 
     const goBackHandler = React.useCallback(
         () => {
+            dispatch(clearComments())
+            dispatch(clearCurrentNews())
             history.push('/')
         },
-        [history]
+        [history, dispatch]
     )
 
     const handleClickUpdate = () => {
@@ -45,7 +50,7 @@ const NewsItem = () => {
                 Go back
             </GoBack>
             <div>
-                <CardStyled>
+                <Card>
                     <CardContent>
                         <TitleStyled variant="h6">
                             {title ? title : 'Untitled'}
@@ -71,7 +76,7 @@ const NewsItem = () => {
                                 Sorry, no link to the news
                             </TextStyled>}
                     </CardActionsStyled>
-                </CardStyled>
+                </Card>
             </div>
             {isFetchingComment
                 ? null
