@@ -1,19 +1,11 @@
-import styled from 'styled-components'
-import { Button } from '@material-ui/core'
+import React from 'react'
+import { ButtonStyled } from './style'
 
-export const ButtonStyled = styled(Button)`
-  margin-left: auto;
-  padding: 4px 6px;
-  font-weight: bold;
-  background-color: #c2185b;
-  font-size: 14px;
-  text-transform: capitalize;
+export const Button = ({ handleClick, text = '' }) => (
+    <ButtonStyled
+        variant="contained"
+        color="primary"
+        onClick={handleClick}>
+        {text}</ButtonStyled>
+)
 
-  &:hover {
-    background-color: #e91e63;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 10px;
-  }
-`

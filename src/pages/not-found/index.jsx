@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { ButtonStyled } from '../../components/button'
+import { Button } from '../../components/button'
 import { NotFoundStyled } from './style'
 
 
@@ -12,12 +12,7 @@ const NotFound = () => {
 
     return (
         <div>
-            <ButtonStyled
-                variant="contained"
-                color="primary"
-                onClick={goBackHandler}>
-                Go back
-            </ButtonStyled>
+            <Button text="GoBack" handleClick={goBackHandler}/>
             <NotFoundStyled><span>404</span>Page not found :(</NotFoundStyled>
         </div>
     )

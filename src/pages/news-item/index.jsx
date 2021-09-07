@@ -8,9 +8,9 @@ import subDays from 'date-fns/subDays'
 import { CardActionsStyled, CommentStyled, GoBack, GoOver, TitleStyled } from './style'
 import { CardStyled } from '../../components/card'
 import { useNewsItem } from './use-news-item'
-import { Comments } from './comments'
+import { Comments } from './comment/comments'
 import { TextStyled } from './style'
-import { ButtonStyledUpdate } from '../../components/updateButton'
+import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
 import { commentsSelector, isFetchingCommentSelector } from '../../__data__/selectors/comments'
 
@@ -62,9 +62,10 @@ const NewsItem = () => {
                     <CardActionsStyled>
                         {url
                             ? (<a href={url} target={'_blank'} rel="noreferrer">
-                                <GoOver variant="contained" color="primary">
-                                    Go over
-                                </GoOver>
+                                <GoOver
+                                    variant="contained"
+                                    color="primary">
+                                    Go over</GoOver>
                             </a>)
                             : <TextStyled>
                                 Sorry, no link to the news
@@ -80,7 +81,7 @@ const NewsItem = () => {
             {kids.length !== 0
                 ? <Comments kids={kids} commentsCount={commentsCount.length} state={state}/>
                 : <h3>no comments</h3>}
-            <ButtonStyledUpdate onClick={handleClickUpdate}>update</ButtonStyledUpdate>
+            <ButtonUpdate handleClick={handleClickUpdate} text="Update"/>
         </>
     )
 }

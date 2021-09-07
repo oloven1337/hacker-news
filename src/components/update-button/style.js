@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import { ButtonStyled } from '../button'
+import { Button } from '@material-ui/core'
 
-export const ButtonStyledUpdate = styled(ButtonStyled)`
+export const ButtonStyledUpdate = styled(Button)`
     position: fixed;
     max-width: inherit;
     top: 10px;
@@ -13,10 +13,12 @@ export const ButtonStyledUpdate = styled(ButtonStyled)`
     opacity: .5;
     transition: .5s;
     color: white;
+    background-color: #c2185b;
 
     &:hover {
         opacity: 1;
         right: 2px;
+        background-color: #c2185b;
     }
 
     @media (max-width: 768px) {

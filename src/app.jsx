@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import News from './pages/main'
 import NewsItem from './pages/news-item/'
 import NotFound from './pages/not-found'
-import Header from './components/header/header'
+import Header from './components/header'
 
 export const App = () => (
     <>

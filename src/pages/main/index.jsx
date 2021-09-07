@@ -6,16 +6,15 @@ import { CardActions } from '@material-ui/core'
 
 import { isLoading, newsList } from '../../__data__/selectors/news'
 import { getAll } from '../../__data__/actions/news'
-
 import {
     WrapperCard,
     TextStyled,
     TitleStyled,
     Wrapper
 } from './style'
-import { ButtonStyled } from '../../components/button'
+import { Button } from '../../components/button'
 import { CardStyled } from '../../components/card'
-import { ButtonStyledUpdate } from '../../components/updateButton'
+import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
 
 const News = () => {
@@ -43,7 +42,7 @@ const News = () => {
 
     return (
         <Wrapper>
-            {items.map(({ id, title, score, by, time, url, descendants } = {}) => {
+            {items.map(({ id, title, score, by, time } = {}) => {
                 return <CardStyled key={id}>
                     <TitleStyled>
                         {title}
@@ -63,16 +62,15 @@ const News = () => {
                         </TextStyled>
                         <CardActions>
                             <Link to={`/item/${id}`}>
-                                <ButtonStyled variant="contained" color="primary">
+                                <Button text="read it">
                                     Read it
-                                </ButtonStyled>
+                                </Button>
                             </Link>
                         </CardActions>
                     </WrapperCard>
                 </CardStyled>
             })}
-            <ButtonStyledUpdate variant="contained" color="primary"
-                                onClick={handleClickUpdate}>Update</ButtonStyledUpdate>
+            <ButtonUpdate text="Update" handleClick={handleClickUpdate}/>
         </Wrapper>
     )
 }

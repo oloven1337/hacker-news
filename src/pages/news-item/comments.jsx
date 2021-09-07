@@ -1,31 +1,37 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { commentsSelector, isFetchingCommentSelector } from '../../__data__/selectors/comments'
-import { fetchComments } from '../../__data__/actions/comments'
-import { CommentItem } from '../../components/comment/comments'
-import { Loader } from '../../components/loader'
+import { getChildComments } from '../../__data__/actions/comments'
+import { AuthorCommentStyled, CommentWrapper, ParagraphStyled } from './comment/style'
+import { Button } from '../../components/button'
 
-export const Comments = ({ kids = [], state }) => {
+
+export const CommentItem = ({ by = '', kids = [], text = '', childComments, deleted = false }) => {
     const dispatch = useDispatch()
-    const comments = useSelector(commentsSelector)
-    const isFetchingComment = useSelector(isFetchingCommentSelector)
+    const [clickPermission, setClickPermission] = React.useState(false)
 
-    React.useEffect(() => {
-        dispatch(fetchComments(kids))
-        const intervalId = setInterval(() => {
-            dispatch(fetchComments(kids))
-        }, 60000)
-
-        return () => {
-            clearInterval(intervalId)
-        }
-    }, [dispatch, kids, state])
-    if (isFetchingComment) {
-        return <Loader/>
+    const handleClickComments = () => {
+        dispatch(getChildComments(kids))
+        setClickPermission(true)
     }
-
-    return comments.map((comment) => {
-        return <CommentItem key={comment.id} {...comment}/>
-    })
+    return (
+        <div>
+            <CommentWrapper>
+                <AuthorCommentStyled>
+                    <h4>{by}</h4>
+                </AuthorCommentStyled>
+                <ParagraphStyled>
+                    {deleted ? <p>Sorry, comment was deleted</p> : <p dangerouslySetInnerHTML={{ __html: text }}/>}
+                </ParagraphStyled>
+                {kids.length !== 0 && !clickPermission
+                && (<Button
+                    text="Show more"
+                    onClick={handleClickComments}
+                />)}
+                {childComments && childComments.map((comment) => (
+                    <CommentItem key={comment.id} {...comment}/>
+                ))}
+            </CommentWrapper>
+        </div>
+    )
 }

@@ -1,14 +1,16 @@
 import styled from 'styled-components'
-import { CardActions } from '@material-ui/core'
-
-import { ButtonStyled } from '../../components/button'
+import { CardActions, Button } from '@material-ui/core'
 
 export const CardActionsStyled = styled(CardActions)`
     a {
         text-decoration: none;
     }
 `
-export const GoBack = styled(ButtonStyled)`
+export const GoBack = styled(Button)`
+    margin-left: auto;
+    font-weight: bold;
+    background-color: #c2185b;
+
     margin-bottom: 10px;
 
     &:before {
@@ -16,17 +18,29 @@ export const GoBack = styled(ButtonStyled)`
         padding: 0 10px;
         color: white;
         font-weight: bold;
+        background-color: transparent;
+    }
+
+    &:hover {
+        background-color: #e91e63;
     }
 
     &:hover:before {
         transform: translate3d(-10px, 0, 0);
+        background-color: #e91e63;
+        transition: .6s;
+    }
 
-        transition: .9s;
+    @media (max-width: 768px) {
+        font-size: 10px;
     }
 `
 
-export const GoOver = styled(ButtonStyled)`
+export const GoOver = styled(Button)`
     width: 100%;
+    background-color: #e91e63;
+    text-transform: capitalize;
+    font-weight: bold;
 
     &:after {
         content: "🠖";
@@ -35,9 +49,18 @@ export const GoOver = styled(ButtonStyled)`
         font-weight: bold;
     }
 
+    &:hover {
+        background-color: #e91e63;
+    }
+
     &:hover:after {
+        background-color: #e91e63;
         transform: translate3d(10px, 0, 0);
-        transition: .9s;
+        transition: .6s;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 10px;
     }
 `
 
