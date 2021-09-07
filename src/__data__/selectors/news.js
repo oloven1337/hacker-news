@@ -7,5 +7,5 @@ export const hasErrorSelector = state => state.news.hasError
 
 export const newsList = createSelector(
     news,
-    (items) => items.sort((a, b) => b.time - a.time)
+    (items) => items.sort((a, b) => b?.time - a?.time)
 )

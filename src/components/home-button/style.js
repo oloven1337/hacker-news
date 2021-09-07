@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 
-export const GoHome = styled(Button)`
+export const MainPageButtonStyled = styled(Button)`
     a {
         text-decoration: none;
         color: white;

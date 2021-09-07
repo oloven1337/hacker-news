@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import News from './pages/main'
-import NewsItem from './pages/news-item/'
-import NotFound from './pages/not-found'
-import Header from './components/header'
+import { News } from './pages/main'
+import { NewsItem } from './pages/news-item/'
+import { NotFound } from './pages/not-found'
+import { Header } from './components'
 import { ErrorComponent } from './pages/error'
 
 export const App = () => (

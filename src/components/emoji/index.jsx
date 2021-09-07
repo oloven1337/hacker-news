@@ -10,5 +10,5 @@ export const Emoji = ({ src }) => (
 )
 
 Emoji.propTypes = {
-    src: PropTypes.string
+    src: PropTypes.string.isRequired
 }

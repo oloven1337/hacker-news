@@ -3,15 +3,22 @@ import PropTypes from 'prop-types'
 
 import { ButtonStyled } from './style'
 
-export const Button = ({ handleClick, text = '' }) => (
+export const Button = ({ handleClick, text }) => (
     <ButtonStyled
         variant="contained"
         color="primary"
-        onClick={handleClick}>
-        {text}</ButtonStyled>
+        onClick={handleClick}
+    >
+        {text}
+    </ButtonStyled>
 )
+
+Button.defaultProps = {
+    handleClick: () => {},
+    text: ''
+}
 
 Button.propTypes = {
     handleClick: PropTypes.func,
-    text: PropTypes.string
+    text: PropTypes.string.isRequired
 }

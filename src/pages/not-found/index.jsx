@@ -1,20 +1,20 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { Button } from '../../components/button'
+import { Button } from '../../components'
+
 import { NotFoundStyled } from './style'
 
-
-const NotFound = () => {
+export const NotFound = () => {
     const history = useHistory()
-    const goBackHandler = () => history.push('/')
+    const backHandler = React.useCallback(() => {
+        history.push('/')
+    }, [history])
 
     return (
-        <div>
-            <Button text="Go Back" handleClick={goBackHandler}/>
+        <>
+            <Button text="Back" handleClick={backHandler}/>
             <NotFoundStyled><span>404</span>Page not found :(</NotFoundStyled>
-        </div>
+        </>
     )
 }
-
-export default NotFound
