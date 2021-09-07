@@ -8,7 +8,7 @@ import subDays from 'date-fns/subDays'
 import { CardActionsStyled, CommentStyled, GoBack, GoOver, TitleStyled } from './style'
 import { Card } from '../../components/card'
 import { useNewsItem } from './use-news-item'
-import { Index } from './comment'
+import { Comments } from './comments'
 import { TextStyled } from './style'
 import { ButtonUpdate } from '../../components/update-button'
 import { Loader } from '../../components/loader'
@@ -24,7 +24,7 @@ const NewsItem = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const { isFetching, by, time, url, title, kids } = useNewsItem()
-    const [state, setState] = React.useState(Math.random())
+    const [updateRnd, setUpdateRnd] = React.useState(Math.random())
     const commentsCount = useSelector(commentsSelector)
     const hasError = useSelector(hasErrorSelector)
     const isFetchingComment = useSelector(isFetchingCommentSelector)
@@ -38,7 +38,7 @@ const NewsItem = () => {
     )
 
     const handleClickUpdate = () => {
-        setState(Math.random())
+        setUpdateRnd(Math.random())
     }
 
     if (hasError) {
@@ -98,7 +98,7 @@ const NewsItem = () => {
                     Comments: <span>{commentsCount.length}</span>
                 </CommentStyled>}
             {kids.length !== 0
-                ? <Index kids={kids} commentsCount={commentsCount.length} state={state}/>
+                ? <Comments kids={kids} commentsCount={commentsCount.length} updateRnd={updateRnd}/>
                 : <h3>no comments</h3>}
             <ButtonUpdate handleClick={handleClickUpdate} text="Update"/>
         </>

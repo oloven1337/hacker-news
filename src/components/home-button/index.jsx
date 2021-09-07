@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoHome } from './style'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export const HomeButton = ({ refresh, text }) => (
     <GoHome>
@@ -10,3 +11,8 @@ export const HomeButton = ({ refresh, text }) => (
         }
     </GoHome>
 )
+
+HomeButton.propTypes = {
+    refresh: PropTypes.bool,
+    text: PropTypes.string
+}

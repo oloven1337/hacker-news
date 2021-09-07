@@ -6,13 +6,12 @@ import { NotFoundStyled } from './style'
 
 
 const NotFound = () => {
-
     const history = useHistory()
     const goBackHandler = () => history.push('/')
 
     return (
         <div>
-            <Button text="GoBack" handleClick={goBackHandler}/>
+            <Button text="Go Back" handleClick={goBackHandler}/>
             <NotFoundStyled><span>404</span>Page not found :(</NotFoundStyled>
         </div>
     )

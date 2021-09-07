@@ -10,7 +10,7 @@ export const GoBack = styled(Button)`
     margin-left: auto;
     font-weight: bold;
     background-color: #c2185b;
-
+    text-transform: capitalize;
     margin-bottom: 10px;
 
     &:before {
